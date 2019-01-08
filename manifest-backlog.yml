@@ -4,9 +4,9 @@ applications:
   instances: 1
   memory: 256M
   routes:
-  - route: backlog-pal-ssriw.apps.pikes.pal.pivotal.io
+  - route: backlog-pal-ssriw.cfapps.io
   path: Applications/BacklogServer/bin/Release/netcoreapp2.1/publish
   env:
-    REGISTRATION_SERVER_ENDPOINT: http://registration-pal-ssriw.apps.pikes.pal.pivotal.io/
+    REGISTRATION_SERVER_ENDPOINT: http://registration-pal-ssriw.cfapps.io/
   services:
   - tracker-backlog-database
