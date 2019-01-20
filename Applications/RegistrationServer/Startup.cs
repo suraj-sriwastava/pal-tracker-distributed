@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Pivotal.Discovery.Client;
 using Projects;
 using Steeltoe.CloudFoundry.Connector.MySql.EFCore;
 using Users;
@@ -28,7 +29,7 @@ namespace RegistrationServer
             services.AddDbContext<AccountContext>(options => options.UseMySql(Configuration));
             services.AddDbContext<ProjectContext>(options => options.UseMySql(Configuration));
             services.AddDbContext<UserContext>(options => options.UseMySql(Configuration));
-
+            services.AddDiscoveryClient(Configuration);
             services.AddScoped<IAccountDataGateway, AccountDataGateway>();
             services.AddScoped<IProjectDataGateway, ProjectDataGateway>();
             services.AddScoped<IUserDataGateway, UserDataGateway>();
@@ -42,6 +43,7 @@ namespace RegistrationServer
             loggerFactory.AddDebug();
 
             app.UseMvc();
+            app.UseDiscoveryClient();
         }
     }
 }
